@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detroit: Become Human | Полное прохождение всех 31 миссий</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Стили для страницы прохождения */
+        .guide-hero {
+            background: linear-gradient(rgba(10, 10, 20, 0.9), rgba(10, 10, 20, 0.95)), 
+                       url('https://avatars.mds.yandex.net/i?id=af11267975620ca3f423057cb9da7f03_l-3754358-images-thumbs&n=13');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .guide-hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .mission-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .mission-item {
+            background: #151522;
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 4px solid;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+        
+        .mission-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .mission-item.connor {
+            border-color: #2ecc71;
+        }
+        
+        .mission-item.kara {
+            border-color: #3498db;
+        }
+        
+        .mission-item.markus {
+            border-color: #9b59b6;
+        }
+        
+        .mission-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #2a2a3a;
+        }
+        
+        .mission-number {
+            background: #4d9eff;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            margin-right: 15px;
+        }
+        
+        .mission-title-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-grow: 1;
+        }
+        
+        .mission-title {
+            font-size: 22px;
+            color: white;
+        }
+        
+        .mission-character {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        
+        .mission-character.connor {
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+            border: 1px solid rgba(46, 204, 113, 0.3);
+        }
+        
+        .mission-character.kara {
+            background: rgba(52, 152, 219, 0.2);
+            color: #3498db;
+            border: 1px solid rgba(52, 152, 219, 0.3);
+        }
+        
+        .mission-character.markus {
+            background: rgba(155, 89, 182, 0.2);
+            color: #9b59b6;
+            border: 1px solid rgba(155, 89, 182, 0.3);
+        }
+        
+        .mission-content {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 25px;
+        }
+        
+        .mission-image {
+            border-radius: 8px;
+            overflow: hidden;
+            height: 160px;
+            background-color: #222233;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mission-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* НЕ обрезает картинки */
+            background-color: #222233;
+        }
+        
+        .mission-tips ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        .mission-tips li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #ccccdd;
+            font-size: 14px;
+            line-height: 1.5;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .mission-tips li:before {
+            content: "►";
+            position: absolute;
+            left: 0;
+            color: #4d9eff;
+            font-size: 12px;
+        }
+        
+        .mission-tips li:last-child {
+            border-bottom: none;
+        }
+        
+        .mission-section h4 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .mission-section h4 i {
+            color: #4d9eff;
+        }
+        
+        .warning {
+            background: rgba(231, 76, 60, 0.1);
+            border-left: 3px solid #e74c3c;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .warning strong {
+            color: #e74c3c;
+        }
+        
+        .good-choice {
+            background: rgba(46, 204, 113, 0.1);
+            border-left: 3px solid #2ecc71;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .good-choice strong {
+            color: #2ecc71;
+        }
+        
+        .spoiler {
+            background: rgba(155, 89, 182, 0.1);
+            border-left: 3px solid #9b59b6;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .spoiler strong {
+            color: #9b59b6;
+        }
+        
+        .guide-nav {
+            background: #151522;
+            padding: 15px 0;
+            position: sticky;
+            top: 80px;
+            z-index: 90;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #2a2a3a;
+        }
+        
+        .guide-nav-content {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .guide-nav a {
+            color: #b0b0c0;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        
+        .guide-nav a:hover {
+            background: rgba(77, 158, 255, 0.2);
+            color: white;
+        }
+        
+        .back-home {
+            text-align: center;
+            margin: 50px 0 30px;
+        }
+        
+        .back-home a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: #4d9eff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .back-home a:hover {
+            background: #3a7acc;
+        }
+        
+        @media (max-width: 768px) {
+            .mission-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .mission-image {
+                height: 150px;
+            }
+            
+            .mission-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .mission-title-container {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">DETROIT: BECOME HUMAN</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="#mission1">Все миссии</a></li>
+                    <li><a href="#tips">Советы</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+
+    <section class="guide-hero">
+        <div class="container">
+            <h1>Все 31 миссия Detroit: Become Human</h1>
+            <p>Полное пошаговое руководство с советами для каждой главы</p>
+
+             <div class="spoiler-alert-box">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span><strong>ВНИМАНИЕ:</strong> Это руководство содержит спойлеры. Рекомендуется сначала пройти игру самостоятельно.</span>
+        </div>
+        </div>
+    </section>
+
+
+    <nav class="guide-nav">
+        <div class="container guide-nav-content">
+            <a href="#mission1">Миссии 1-10</a>
+            <a href="#mission11">Миссии 11-20</a>
+            <a href="#mission21">Миссии 21-31</a>
+            <a href="#tips">Общие советы</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section id="mission1">
+            <h2 class="section-title">Миссии 1-10</h2>
+            
+            <div class="mission-timeline">
+                <!-- Миссия 1 -->
+                <div class="mission-item connor">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">1</div>
+                            <h3 class="mission-title">Заложница</h3>
+                        </div>
+                        <span class="mission-character connor">Коннор</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=e1473f0c468c77dd45dd26f990c96d47_l-3027871-images-thumbs&ref=rim&n=13&w=1280&h=720" alt="Заложница">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Осмотрите все улики на месте преступления</li>
+                                    <li>Успокаивайте Дэниела, не угрожайте ему</li>
+                                    <li>В финале выберите "Спасти девочку"</li>
+                                    <li>Не бойтесь, если Коннор погибнет - он возродится</li>
+                                </ul>
+                            </div>
+                            <div class="good-choice">
+                                <strong>Для хорошей концовки:</strong> Проявите эмпатию и спасите заложницу
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Миссия 2 -->
+                <div class="mission-item markus">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">2</div>
+                            <h3 class="mission-title">Оттенки цвета</h3>
+                        </div>
+                        <span class="mission-character markus">Маркус</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=ae86cc11a4cc0b16ef8193ae746599e6_l-5575082-images-thumbs&n=13" alt="Оттенки цвета">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Купите синие и красные краски для Карла</li>
+                                    <li>При встрече с протестующими сохраняйте спокойствие</li>
+                                    <li>Не отвечайте агрессией на оскорбления</li>
+                                    <li>Можно просто пройти мимо или вступить в диалог</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Миссия 3 -->
+                <div class="mission-item kara">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">3</div>
+                            <h3 class="mission-title">Новый дом</h3>
+                        </div>
+                        <span class="mission-character kara">Кэра</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=d70fad1ef287fa8f8032d35b32ed3a7eb0951b2f-5886860-images-thumbs&n=13" alt="Новый дом">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Сначала уберите гостиную, затем кухню</li>
+                                    <li>Проверьте Алису только после уборки</li>
+                                    <li>Будьте послушны Тодду, не заставляйте ждать</li>
+                                    <li>В комнате Алисы проявите заботу</li>
+                                </ul>
+                            </div>
+                            <div class="warning">
+                                <strong>Внимание!</strong> Не проявляйте эмоции перед Тоддом
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Миссия 4 -->
+                <div class="mission-item markus">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">4</div>
+                            <h3 class="mission-title">Художник</h3>
+                        </div>
+                        <span class="mission-character markus">Маркус</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://images.stopgame.ru/uploads/users/2023/658723/00342.eQIqu4F.jpg" alt="Художник">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Маркус и Карл занимаются искусством в студии</li>
+                                    <li>Выберите картину "Свобода" для развития сюжета</li>
+                                    <li>Играйте на пианино с чувством, а не технично</li>
+                                    <li>Вернитесь домой и приготовьте лекарства Карлу</li>
+                                </ul>
+                            </div>
+                            <div class="spoiler">
+                                <strong>Важно:</strong> Эта миссия происходит ДО конфликта с Лео
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Миссия 5 -->
+                <div class="mission-item connor">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">5</div>
+                            <h3 class="mission-title">Напарники</h3>
+                        </div>
+                        <span class="mission-character connor">Коннор</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=ab51e0751705ff8f2e27d00015f02974_l-5256069-images-thumbs&ref=rim&n=13&w=1920&h=1080" alt="Напарники">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Пожмите руку Хэнку при знакомстве</li>
+                                    <li>Не критикуйте его за пьянство или опоздание</li>
+                                    <li>Спросите о его сыне с пониманием</li>
+                                    <li>В машине предложите вести, если Хэнк пьян</li>
+                                </ul>
+                            </div>
+                            <div class="good-choice">
+                                <strong>Для хороших отношений:</strong> Проявляйте эмпатию и уважение
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Миссия 6 -->
+                <div class="mission-item kara">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">6</div>
+                            <h3 class="mission-title">Страшная ночь</h3>
+                        </div>
+                        <span class="mission-character kara">Кэра</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=f4a40121ea398466e36d8b5a83b8089d_l-4135778-images-thumbs&n=13" alt="Страшная ночь">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Когда Тодд бьёт Алису - вмешайтесь</li>
+                                    <li>Это ключевой момент для пробуждения Кары</li>
+                                    <li>Вы должны стать девиантом в этой сцене</li>
+                                    <li>Защищайте Алису любой ценой</li>
+                                </ul>
+                            </div>
+                            <div class="good-choice">
+                                <strong>Обязательно:</strong> Проявите девиантность и защитите Алису
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Миссия 7 -->
+                <div class="mission-item markus">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">7</div>
+                            <h3 class="mission-title">Сломанный</h3>
+                        </div>
+                        <span class="mission-character markus">Маркус</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=58700599ba4805af0ceff5c94e1ef9f0_l-4589919-images-thumbs&n=13" alt="Сломанный">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Вечером Лео приходит домой пьяный и агрессивный</li>
+                                    <li>Он нападает на Карла, требуя денег</li>
+                                    <li>Критический выбор: защищаться или нет</li>
+                                    <li><strong>Для хорошей концовки:</strong> НЕ защищайтесь от Лео</li>
+                                </ul>
+                            </div>
+                            <div class="good-choice">
+                                <strong>Лучший выбор:</strong> Не защищайтесь, даже если Карл пострадает
+                            </div>
+                            <div class="spoiler">
+                                <strong>Результат:</strong> Если не защищаться, полиция забирает Маркуса на свалку
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Миссия 8 -->
+                <div class="mission-item connor">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">8</div>
+                            <h3 class="mission-title">Допрос</h3>
+                        </div>
+                        <span class="mission-character connor">Коннор</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=11e67118d4670269d988c86d50d6a45f_l-5259037-images-thumbs&n=13" alt="Допрос">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Допрашивайте андроида RX100 в полицейском участке</li>
+                                    <li>Используйте тактику давления или убеждения</li>
+                                    <li>Найдите слабые места в его показаниях</li>
+                                    <li>Можно получить информацию о движении девиантов</li>
+                                </ul>
+                            </div>
+                            <div class="good-choice">
+                                <strong>Для хороших отношений с Хэнком:</strong> Проявите эмпатию при допросе
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Миссия 9 -->
+                <div class="mission-item markus">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">9</div>
+                            <h3 class="mission-title">Из мёртвых</h3>
+                        </div>
+                        <span class="mission-character markus">Маркус</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=fcf6b46f1cafc06d8c934e4527072217_l-10878080-images-thumbs&n=13" alt="Из мёртвых">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Маркус просыпается на свалке андроидов</li>
+                                    <li>Найдите запчасти для ремонта себя</li>
+                                    <li>Помогите другим андроидам на свалке</li>
+                                    <li>Избегайте охранников, прячьтесь в кучах мусора</li>
+                                    <li>Спланируйте и осуществите побег</li>
+                                </ul>
+                            </div>
+                            <div class="good-choice">
+                                <strong>Для мирного пути:</strong> Сбегите тихо, без насилия
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Миссия 10 -->
+                <div class="mission-item kara">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">10</div>
+                            <h3 class="mission-title">Беглянки</h3>
+                        </div>
+                        <span class="mission-character kara">Кэра</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=cbc275107e725ca3be73adf9dc94d9413fcdc067-12742198-images-thumbs&n=13" alt="Беглянки">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Кара и Алиса скрываются после побега от Тодда</li>
+                                    <li>Встречают андроида, который советует поехать к Златко</li>
+                                    <li>Выберите укрытие: <strong>заброшенный дом</strong> или машину</li>
+                                    <li>Нужно согреться и найти пищу для Алисы</li>
+                                    <li>Это первая ночь на улице после побега</li>
+                                </ul>
+                            </div>
+                            <div class="good-choice">
+                                <strong>Лучший выбор:</strong> Заброшенный дом (безопаснее и теплее)
+                            </div>
+                            <div class="spoiler">
+                                <strong>Важно:</strong> Андроид говорит о Златко как о том, кто помогает девиантам (но это ложь)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> <!-- ЗАКРЫВАЮЩИЙ ТЕГ ДЛЯ СЕКЦИИ 1-10 -->
+
+        <section id="mission11">
+            <h2 class="section-title">Миссии 11-20</h2>
+            
+            <div class="mission-timeline">
+                <!-- Миссия 11 -->
+                <div class="mission-item connor">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">11</div>
+                            <h3 class="mission-title">В ожидании Хэнка…</h3>
+                        </div>
+                        <span class="mission-character connor">Коннор</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=ad6cce79d16410412d3fb2fd0362a44c_l-5238486-images-thumbs&n=13" alt="В ожидании Хэнка">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Можете сыграть в баскетбол в участке</li>
+                                    <li>Когда Хэнк приедет - проявите терпение</li>
+                                    <li>Не упрекайте его за опоздание</li>
+                                    <li>Подготовьтесь к поездке в клуб "Рай"</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+          <!-- Миссия 12: Великий побег -->
+            <div class="mission-item kara">
+                <div class="mission-header">
+                    <div class="mission-title-container">
+                        <div class="mission-number">12</div>
+                        <h3 class="mission-title">Великий побег</h3>
+                    </div>
+                    <span class="mission-character kara">Кэра</span>
+                </div>
+                <div class="mission-content">
+                    <div class="mission-image">
+                        <img src="https://avatars.mds.yandex.net/i?id=faabe5bf0f262df3c49ab9c67b2cac9a_l-4987522-images-thumbs&ref=rim&n=13&w=1280&h=720" alt="Великий побег">
+                    </div>
+                    <div class="mission-tips">
+                        <div class="mission-section">
+                            <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                            <ul>
+                                <li>На следующий день после ночи в заброшенном доме</li>
+                                <li>Коннор преследует Кэру и Алису</li>
+                                <li>Спрячьтесь в переулке или в толпе</li>
+                                <li>Доберитесь до остановки автобуса</li>
+                                <li>Узнайте у другого андроида про Златко</li>
+                                <li>Решите, ехать ли к Златко или искать другой путь</li>
+                            </ul>
+                        </div>
+                        <div class="good-choice">
+                            <strong>Для безопасности:</strong> Спрячьтесь хорошо, Коннор не должен вас найти
+                        </div>
+                        <div class="spoiler">
+                            <strong>Важно:</strong> Андроид на остановке расскажет о Златко как о "спасителе девиантов"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+               
+     <!-- Миссия 13: Иерихон -->
+<div class="mission-item markus">
+    <div class="mission-header">
+        <div class="mission-title-container">
+            <div class="mission-number">13</div>
+            <h3 class="mission-title">Иерихон</h3>
+        </div>
+        <span class="mission-character markus">Маркус</span>
+    </div>
+    <div class="mission-content">
+        <div class="mission-image">
+            <img src="https://avatars.mds.yandex.net/i?id=b4691a7c9440c4c94b6cf23451fbe520_l-5394818-images-thumbs&n=13" alt="Иерихон">
+        </div>
+        <div class="mission-tips">
+            <div class="mission-section">
+                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                <ul>
+                    <li>Поговорите с Норт, Джошем и Саймоном</li>
+                    <li>Осмотрите помещение: сундук CyberLife и умирающего андроида</li>
+                    <li>Зажгите огонь в четырёх бочках для обогрева</li>
+                    <li>Найдите Люси в отдельной комнате для лечения</li>
+                    <li>Внимательно слушайте истории каждого андроида</li>
+                </ul>
+            </div>
+            <div class="good-choice">
+                <strong>Важно:</strong> Проявите эмпатию ко всем андроидам в убежище
+            </div>
+        </div>
+    </div>
+</div>
+                <!-- Миссия 14 -->
+                <div class="mission-item connor">
+    <div class="mission-header">
+        <div class="mission-title-container">
+            <div class="mission-number">14</div>
+            <h3 class="mission-title">Гнездо</h3>
+        </div>
+        <span class="mission-character connor">Коннор</span>
+    </div>
+    <div class="mission-content">
+        <div class="mission-image">
+            <img src="https://avatars.mds.yandex.net/i?id=003844a663194ae626829bfaa5447fb4_l-5235076-images-thumbs&n=13" alt="Гнездо">
+        </div>
+        <div class="mission-tips">
+            <div class="mission-section">
+                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                <ul>
+                    <li>Коннор и Хэнк расследуют убийство на чердаке</li>
+                    <li>Находят девианта Руперта в окружении голубей</li>
+                    <li>Осмотрите все улики: фотографии, следы, голубей</li>
+                    <li>Руперт пытается сбежать через крыши</li>
+                    <li>Погоня по крышам с QTE-сценами</li>
+                    <li>Нужно поймать девианта или дать ему сбежать</li>
+                </ul>
+            </div>
+            <div class="good-choice">
+                <strong>Для хороших отношений с Хэнком:</strong> Поймайте девианта, но проявите эмпатию
+            </div>
+            <div class="spoiler">
+                <strong>Важный момент:</strong> Если поймать Руперта, можно получить информацию о движении девиантов
+            </div>
+        </div>
+    </div>
+</div>
+
+             <!-- Миссия 15: Пора решать -->
+<div class="mission-item markus">
+    <div class="mission-header">
+        <div class="mission-title-container">
+            <div class="mission-number">15</div>
+            <h3 class="mission-title">Пора решать</h3>
+        </div>
+        <span class="mission-character markus">Маркус</span>
+    </div>
+    <div class="mission-content">
+        <div class="mission-image">
+            <img src="https://avatars.mds.yandex.net/i?id=09c65f9dd0a464519e5ef01858e2ddd1_l-5240761-images-thumbs&n=13" alt="Пора решать">
+        </div>
+        <div class="mission-tips">
+            <div class="mission-section">
+                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                <ul>
+                    <li>Выслушайте пророчество Люси о вашей судьбе</li>
+                    <li>Проведите собрание лидеров Иерихона</li>
+                    <li>Выберите дальнейшую стратегию борьбы</li>
+                    <li>Прислушайтесь к мнению Норт (активность) и Джоша (мир)</li>
+                    <li>Примите решение о проведении мирного протеста</li>
+                </ul>
+            </div>
+            <div class="spoiler">
+                <strong>Пророчество Люси:</strong> "Ты несешь в себе судьбу нашего народа... Ты должен вести нас... Многие из нас погибнут... Но ты дашь нам свободу"
+            </div>
+        </div>
+    </div>
+</div>
+
+                <!-- Миссия 16 -->
+                <div class="mission-item kara">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">16</div>
+                            <h3 class="mission-title">Златко</h3>
+                        </div>
+                        <span class="mission-character kara">Кэра</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=e81ad19eca2a3534e59995bac98e0e39_l-5339089-images-thumbs&n=13" alt="Златко">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Осмотрите дом Златко до разговора с ним</li>
+                                    <li>Будьте осторожны, он опасен</li>
+                                    <li>Когда он ведёт вас вниз - приготовьтесь бежать</li>
+                                    <li>Спрячьтесь в шкафу при первой возможности</li>
+                                </ul>
+                            </div>
+                            <div class="warning">
+                                <strong>Внимание!</strong> Златко обманывает - он уничтожает андроидов
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Миссия 17 -->
+                <div class="mission-item connor">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">17</div>
+                            <h3 class="mission-title">Русская рулетка</h3>
+                        </div>
+                        <span class="mission-character connor">Коннор</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=ec0c3ecf2e48a272a0d34337df30546218e48c02-12937750-images-thumbs&n=13" alt="Русская рулетка">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Найдите Хэнка в его доме</li>
+                                    <li>Будьте осторожны, он вооружён и пьян</li>
+                                    <li>Проявите понимание к его ситуации</li>
+                                    <li>Не угрожайте и не провоцируйте его</li>
+                                </ul>
+                            </div>
+                            <div class="good-choice">
+                                <strong>Критический момент:</strong> НЕ стреляйте в Хэнка
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Миссия 18 -->
+                <div class="mission-item markus">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">18</div>
+                            <h3 class="mission-title">Запчасти</h3>
+                        </div>
+                        <span class="mission-character markus">Маркус</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=ecf07ee99b6b3715b558ee796a5a760b_l-5220538-images-thumbs&n=13" alt="Запчасти">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Проникните в магазин запчастей</li>
+                                    <li>Украдите необходимые компоненты</li>
+                                    <li>Избегайте конфронтации с охранниками</li>
+                                    <li>Действуйте быстро и незаметно</li>
+                                </ul>
+                            </div>
+                            <div class="good-choice">
+                                <strong>Для мирного пути:</strong> Украдите запчасти без насилия
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Миссия 19 -->
+                <div class="mission-item connor">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">19</div>
+                            <h3 class="mission-title">Клуб "Рай"</h3>
+                        </div>
+                        <span class="mission-character connor">Коннор</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://i.playground.ru/i/pix/3115902/image.jpg" alt="Клуб Рай">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Найдите андроида-проститутку Трейси</li>
+                                    <li>Будьте вежливы при допросе</li>
+                                    <li>Не угрожайте и не запугивайте её</li>
+                                    <li>В финале примите решение о её судьбе</li>
+                                </ul>
+                            </div>
+                            <div class="good-choice">
+                                <strong>Для хорошей концовки:</strong> Отпустите Трейси
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+               <!-- Миссия 20 -->
+<div class="mission-item kara">
+    <div class="mission-header">
+        <div class="mission-title-container">
+            <div class="mission-number">20</div>
+            <h3 class="mission-title">Пиратская бухта</h3>
+        </div>
+        <span class="mission-character kara">Кара</span>
+    </div>
+    <div class="mission-content">
+        <div class="mission-image">
+            <img src="https://avatars.mds.yandex.net/i?id=0a43726f4a9e26c79e49c9bfaa0e832328ed4f1f-7546766-images-thumbs&n=13" alt="Пиратская бухта">
+        </div>
+        <div class="mission-tips">
+            <div class="mission-section">
+                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                <ul>
+                    <li>После побега от Златко Кара, Алиса и Лютер ищут убежище</li>
+                    <li>Найдите заброшенный парк развлечений "Пиратская бухта"</li>
+                    <li>Исследуйте аттракционы, чтобы найти укрытие</li>
+                    <li>Проведите ночь в заброшенной карусели или другом месте</li>
+                    <li>Заботьтесь об Алисе и поддерживайте Лютера</li>
+                </ul>
+            </div>
+            <div class="spoiler">
+                <strong>Важно:</strong> Это временное убежище перед поиском пути в Канаду
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+        </section> <!-- ЗАКРЫВАЮЩИЙ ТЕГ ДЛЯ СЕКЦИИ 11-20 -->
+
+        <section id="mission21">
+            <h2 class="section-title">Миссии 21-31</h2>
+            
+            <div class="mission-timeline">
+                <!-- Миссия 21 -->
+                <div class="mission-item connor">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">21</div>
+                            <h3 class="mission-title">Мост</h3>
+                        </div>
+                        <span class="mission-character connor">Коннор</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=79cb7b593ff88db371a2cc50d085ca64fe81104d-12422631-images-thumbs&n=13" alt="Мост">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Найдите Хэнка на мосту</li>
+                                    <li>Он в депрессии и может совершить самоубийство</li>
+                                    <li>Проявите максимальную эмпатию</li>
+                                    <li>Спасите его любой ценой</li>
+                                </ul>
+                            </div>
+                            <div class="good-choice">
+                                <strong>Обязательно:</strong> Спасите Хэнка, это критически важно
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Миссия 22 -->
+                <div class="mission-item markus">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">22</div>
+                            <h3 class="mission-title">Башня Стрэтфорд</h3>
+                        </div>
+                        <span class="mission-character markus">Маркус</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=4dede31be004becce2d846900f714d58f239e335-8267821-images-thumbs&n=13" alt="Башня Стрэтфорд">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Захватите телебашню для трансляции</li>
+                                    <li>Выберите мирный захват без жертв</li>
+                                    <li>Подготовьте обращение к человечеству</li>
+                                    <li>Это шанс заручиться общественной поддержкой</li>
+                                </ul>
+                            </div>
+                            <div class="good-choice">
+                                <strong>Для общественной поддержки:</strong> Действуйте без насилия
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <!-- Миссия 23 -->
+<div class="mission-item connor">
+    <div class="mission-header">
+        <div class="mission-title-container">
+            <div class="mission-number">23</div>
+            <h3 class="mission-title">Вне закона</h3>
+        </div>
+        <span class="mission-character connor">Коннор</span>
+    </div>
+    <div class="mission-content">
+        <div class="mission-image">
+            <img src="https://avatars.mds.yandex.net/i?id=453b82cdc5717b8f47483dab2984d3bb2aa31030-9098836-images-thumbs&n=13" alt="Вне закона">
+        </div>
+        <div class="mission-tips">
+            <div class="mission-section">
+                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                <ul>
+                    <li>Прибытие на место преступления в телестудии</li>
+                    <li>Внимательно слушайте брифинг и изучайте обстановку</li>
+                    <li>Осмотрите все улики: пулевые отверстия, кровь, кепку, камеру</li>
+                    <li>Просмотрите видеозапись с камер наблюдения</li>
+                    <li>Допросите всех андроидов-операторов на студии</li>
+                    <li>Выявите девианта с помощью тактики блефа</li>
+                    <li>Будьте готовы к внезапному нападению и QTE-сценам</li>
+                    <li>В случае погони используйте пистолет полицейского</li>
+                </ul>
+            </div>
+            <div class="warning">
+                <strong>Внимание!</strong> Девиант — крайний левый андроид среди операторов
+            </div>
+            <div class="spoiler">
+                <strong>Ключевой момент:</strong> Используйте блеф о видеозаписи, чтобы вывести девианта на чистую воду
+            </div>
+            <div class="good-choice">
+                <strong>Для успеха:</strong> Быстро реагируйте в QTE и не дайте девианту сбежать
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Миссия 24 -->
+<div class="mission-item kara">
+    <div class="mission-header">
+        <div class="mission-title-container">
+            <div class="mission-number">24</div>
+            <h3 class="mission-title">Ночной поезд</h3>
+        </div>
+        <span class="mission-character kara">Кара</span>
+    </div>
+    <div class="mission-content">
+        <div class="mission-image">
+            <img src="https://avatars.mds.yandex.net/i?id=64d5c0f84c5691b618a6225661372f1944bb9b79-4120604-images-thumbs&n=13" alt="Ночной поезд">
+        </div>
+        <div class="mission-tips">
+            <div class="mission-section">
+                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                <ul>
+                    <li>Кара и Алиса добираются до дома Роуз</li>
+                    <li>Познакомьтесь с Роуз и её сыном Адамом</li>
+                    <li>Доверьтесь им - они помогают девиантам</li>
+                    <li>Узнайте план побега в Канаду</li>
+                    <li>Подготовьтесь к опасному путешествию через границу</li>
+                </ul>
+            </div>
+            <div class="good-choice">
+                <strong>Для успеха:</strong> Доверьтесь Роуз и следуйте её инструкциям
+            </div>
+        </div>
+    </div>
+</div>
+
+                <!-- Миссия 25 -->
+                <div class="mission-item markus">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">25</div>
+                            <h3 class="mission-title">Кэпитол-парк</h3>
+                        </div>
+                        <span class="mission-character markus">Маркус</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=4c5780aab5ed2031b5e07c7799f99437_l-5348787-images-thumbs&n=13" alt="Кэпитол-парк">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Проведите мирный митинг в парке</li>
+                                    <li>Не отвечайте насилием на провокации</li>
+                                    <li>Это ключевой момент для общественного мнения</li>
+                                </ul>
+                            </div>
+                          
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Миссия 26 -->
+                <div class="mission-item connor">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">26</div>
+                            <h3 class="mission-title">Встреча с Камски</h3>
+                        </div>
+                        <span class="mission-character connor">Коннор</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=19cd0303547d9a95d3e15b929b776adc_l-5210456-images-thumbs&n=13" alt="Встреча с Камски">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Встретьтесь с создателем CyberLife</li>
+                                    <li>Задавайте вопросы о природе девиантов</li>
+                                    <li>Узнайте о загадке RA9</li>
+                                    <li>Получите ключ к своей свободе</li>
+                                </ul>
+                            </div>
+                            <div class="spoiler">
+                                <strong>Важный выбор:</strong> Камски даст вам ключ к девиантности
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Миссия 27 -->
+                <div class="mission-item markus">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">27</div>
+                            <h3 class="mission-title">Марш свободы</h3>
+                        </div>
+                        <span class="mission-character markus">Маркус</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://smartcdkeys.com/image/data/products/detroit-become-human/screenshots/detroit-become-human-smartcdkeys-cheap-cd-key-1.jpg" alt="Марш свободы">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Возглавите марш протеста к центру Детройта</li>
+                                    <li>Выберите мирную стратегию</li>
+                                    <li>Не стреляйте в солдат первыми</li>
+                                    <li>Держите своих последователей в безопасности</li>
+                                </ul>
+                            </div>
+                            <div class="good-choice">
+                                <strong>Для мирной концовки:</strong> Не применяйте оружие
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Миссия 28 -->
+                <div class="mission-item connor">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">28</div>
+                            <h3 class="mission-title">Последний шанс, Коннор</h3>
+                        </div>
+                        <span class="mission-character connor">Коннор</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=2269a0299ccf2103f7a8195f84d7820c29708ef7-5669034-images-thumbs&n=13" alt="Последний шанс, Коннор">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Советы по прохождению:</h4>
+                                <ul>
+                                    <li>Проникните в башню CyberLife</li>
+                                    <li>Найдите армию андроидов в хранилище</li>
+                                    <li>Сделайте окончательный выбор: остаться машиной или стать девиантом</li>
+                                    <li>Это точка невозврата для Коннора</li>
+                                </ul>
+                            </div>
+                            <div class="good-choice">
+                                <strong>Обязательно:</strong> Станьте девиантом
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Миссия 29 -->
+                                
+                <div class="mission-item">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">29</div>
+                            <h3 class="mission-title">Перепутье</h3>
+                        </div>
+                        <span class="mission-character connor">Все персонажи</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=2fa82698d34dce94e859099b4b68117116caaf80-13305210-images-thumbs&n=13" alt="Перепутье">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Финальные решения каждого персонажа:</h4>
+                                <ul>
+                                    <li><strong>Коннор:</strong> Финальный выбор - стать девиантом или остаться машиной</li>
+                                    <li><strong>Маркус:</strong> Подготовка к финальному протесту, выбор стратегии</li>
+                                    <li><strong>Кара:</strong> Решение о способе пересечения канадской границы</li>
+                                    <li>Это последний момент для принятия ключевых решений</li>
+                                    <li>Каждый выбор влияет на финальные события</li>
+                                </ul>
+                            </div>
+                            <div class="spoiler">
+                                <strong>Критический момент для Коннора:</strong> Если не стать девиантом, он останется под контролем CyberLife
+                            </div>
+                            <div class="good-choice">
+                                <strong>Для лучшей концовки:</strong> Коннор должен стать девиантом, Маркус выбрать мирный протест, Кара найти безопасный путь
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                               <!-- Миссия 30 -->
+                <div class="mission-item">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">30</div>
+                            <h3 class="mission-title">Ночь души</h3>
+                        </div>
+                        <span class="mission-character connor">Маркус и Коннор</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=ea70e02964469aba9c285dfb25377ba104bb5d4b-9802303-images-thumbs&n=13" alt="Ночь души">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Параллельные события:</h4>
+                                <ul>
+                                    <li><strong>Маркус в Иерихоне:</strong> Последняя ночь перед финальным протестом</li>
+                                    <li><strong>Маркус:</strong> Поговорите с Норт, Джошем и другими андроидами</li>
+                                    <li><strong>Маркус:</strong> Подготовьте финальную речь и выберите стратегию</li>
+                                    <li><strong>Коннор в башне CyberLife:</strong> Проникните на склад андроидов</li>
+                                    <li><strong>Коннор:</strong> Активируйте армию андроидов для помощи Маркусу</li>
+                                    <li><strong>Коннор:</strong> Столкнитесь с другим Коннором-копией</li>
+                                </ul>
+                            </div>
+                            <div class="spoiler">
+                                <strong>Важно:</strong> Коннор появляется в этой миссии только если стал девиантом в "Перепутье"
+                            </div>
+                            <div class="good-choice">
+                                <strong>Для лучшей концовки:</strong> Маркус выбирает мирный протест, Коннор активирует андроидов и побеждает копию
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Миссия 31 -->
+                <div class="mission-item">
+                    <div class="mission-header">
+                        <div class="mission-title-container">
+                            <div class="mission-number">31</div>
+                            <h3 class="mission-title">Битва за Детройт</h3>
+                        </div>
+                        <span class="mission-character connor">Все персонажи</span>
+                    </div>
+                    <div class="mission-content">
+                        <div class="mission-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=218f7607211ed6c694893c629c0c025d_l-5326430-images-thumbs&ref=rim&n=13&w=3000&h=1688" alt="Битва за Детройт">
+                        </div>
+                        <div class="mission-tips">
+                            <div class="mission-section">
+                                <h4><i class="fas fa-lightbulb"></i> Финальные советы:</h4>
+                                <ul>
+                                    <li><strong>Маркус:</strong> Выберите мирный протест, не стреляйте первым</li>
+                                    <li><strong>Коннор:</strong> Не стреляйте в Маркуса, станьте девиантом</li>
+                                    <li><strong>Кара:</strong> Доберитесь до Канады, спасите всех</li>
+                                    <li>Держите общественную поддержку высокой</li>
+                                    <li>Спасите как можно больше персонажей</li>
+                                </ul>
+                            </div>
+                            <div class="good-choice">
+                                <strong>Для лучшей концовки:</strong> Все персонажи живы, андроиды свободны, мирное решение
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- ЗАКРЫВАЮЩИЙ ДИВ ДЛЯ mission-timeline -->
+        </section> <!-- ЗАКРЫВАЮЩИЙ ТЕГ ДЛЯ СЕКЦИИ 21-31 -->
+
+        <section id="tips">
+            <h2 class="section-title">Общие советы для хорошей концовки</h2>
+            
+            <div class="mission-item" style="border-color: #2ecc71;">
+                <div class="mission-header">
+                    <h3 class="mission-title">Как получить идеальный финал</h3>
+                </div>
+                <div class="mission-content">
+                    <div class="mission-tips">
+                        <div class="mission-section">
+                            <h4><i class="fas fa-star"></i> Коннор:</h4>
+                            <ul>
+                                <li>Станьте девиантом</li>
+                                <li>Высокое доверие Хэнка</li>
+                                <li>Спасите Хэнка на мосту</li>
+                                <li>Не стреляйте в Маркуса в финале</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mission-section">
+                            <h4><i class="fas fa-star"></i> Кара:</h4>
+                            <ul>
+                                <li>Максимальное доверие Алисы</li>
+                                <li>Спасите Лютера</li>
+                                <li>Доберитесь до Канады</li>
+                                <li>Все выживают на границе</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mission-section">
+                            <h4><i class="fas fa-star"></i> Маркус:</h4>
+                            <ul>
+                                <li>Мирный протест (без насилия)</li>
+                                <li>Высокая общественная поддержка</li>
+                                <li>Спасите как можно больше андроидов</li>
+                                <li>Успешное выступление на ТВ</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="back-home">
+            <a href="index.html">
+                <i class="fas fa-arrow-left"></i>
+                Вернуться на главную страницу
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Фанатский сайт Detroit: Become Human | Полное прохождение всех 31 миссий</p>
+        </div>
+    </footer>
+</body>
+</html>
